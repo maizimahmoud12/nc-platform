@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer FNC</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-hero" aria-labelledby="page-title">
+      <div class="page-hero-badge">
+        <img src="assets/logo.png" alt="Logo entreprise" class="hero-logo">
+        <span>Quality Management</span>
+      </div>
+
+      <h1 id="page-title" class="page-title">
+        Créer une Fiche de Traitement des Non-Conformités
+      </h1>
+
+      <p class="page-subtitle">
+        Déclarez, structurez et suivez les non-conformités dans une interface moderne,
+        claire et professionnelle.
+      </p>
+    </header>
+
+    <form id="fncForm" novalidate>
+      <section aria-labelledby="section-informations">
+        <div class="section-title">
+          <div class="section-title-left">
+            <img src="assets/logo.png" alt="" class="section-logo" aria-hidden="true">
+            <span id="section-informations">Informations fiche</span>
+          </div>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <label for="lieuEmission">Lieu d'émission</label>
+        <input type="text" id="lieuEmission" name="lieuEmission" autocomplete="organization">
+
+        <label for="numeroFcn">N° FCN</label>
+        <input type="text" id="numeroFcn" name="numeroFcn" placeholder="n01 DAF / 2025">
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date">
+
+        <fieldset class="field-group">
+          <legend>Origine de la NC</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="origine" value="Declaration Spontanee"> Déclaration Spontanée</label>
+            <label><input type="checkbox" name="origine" value="Inspection Controle"> Inspection &amp; Contrôle</label>
+            <label><input type="checkbox" name="origine" value="Audit"> Audit (I) - (E)</label>
+            <label><input type="checkbox" name="origine" value="Reclamation Client"> Réclamation Client</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend>Nature de l'écart</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="natureEcart" value="Systeme Management Qualite"> Système Management Qualité</label>
+            <label><input type="checkbox" name="natureEcart" value="Sante Securite Environnement"> Santé, Sécurité, Environnement</label>
+            <label><input type="checkbox" name="natureEcart" value="Matiere Premiere Produit Fini"> Matière Première et/ou Produit Fini</label>
+            <label><input type="checkbox" name="natureEcart" value="Legale Reglementaire"> Légale, Règlementaire</label>
+            <label><input type="checkbox" name="natureEcart" value="Exigence Contractuelle"> Exigence Contractuelle</label>
+          </div>
+        </fieldset>
+
+        <label for="autreNature">Autre nature</label>
+        <input type="text" id="autreNature" name="autreNature">
+      </section>
+
+      <section aria-labelledby="section-emetteur">
+        <div class="section-title">
+          <div class="section-title-left">
+            <img src="assets/logo.png" alt="" class="section-logo" aria-hidden="true">
+            <span id="section-emetteur">Émetteur</span>
+          </div>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <label for="descriptionEvenement">Description de l'évènement</label>
+        <textarea id="descriptionEvenement" name="descriptionEvenement"></textarea>
+
+        <fieldset class="field-group">
+          <legend>Activités concernées</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="activitesConcernees" value="MNG"> MNG</label>
+            <label><input type="checkbox" name="activitesConcernees" value="SMQ"> SMQ</label>
+            <label><input type="checkbox" name="activitesConcernees" value="HR"> HR</label>
+            <label><input type="checkbox" name="activitesConcernees" value="DLA"> DLA</label>
+            <label><input type="checkbox" name="activitesConcernees" value="DAF"> DAF</label>
+            <label><input type="checkbox" name="activitesConcernees" value="QC"> QC</label>
+            <label><input type="checkbox" name="activitesConcernees" value="HSE"> HSE</label>
+            <label><input type="checkbox" name="activitesConcernees" value="PRO"> PRO</label>
+            <label><input type="checkbox" name="activitesConcernees" value="REA"> REA</label>
+            <label><input type="checkbox" name="activitesConcernees" value="ACH"> ACH</label>
+            <label><input type="checkbox" name="activitesConcernees" value="DOP"> DOP</label>
+            <label><input type="checkbox" name="activitesConcernees" value="DTC"> DTC</label>
+            <label><input type="checkbox" name="activitesConcernees" value="Fournisseur"> Fournisseur</label>
+            <label><input type="checkbox" name="activitesConcernees" value="Prestataire"> Prestataire</label>
+            <label><input type="checkbox" name="activitesConcernees" value="Autres"> Autres</label>
+          </div>
+        </fieldset>
+
+        <div class="inline-grid">
+          <div>
+            <label for="emetteurNom">Nom de l'émetteur</label>
+            <input type="text" id="emetteurNom" name="emetteurNom" autocomplete="name">
+          </div>
+          <div>
+            <label for="emetteurDate">Date</label>
+            <input type="date" id="emetteurDate" name="emetteurDate">
+          </div>
+        </div>
+
+        <label for="emetteurVisa">Visa de l'émetteur</label>
+        <input type="text" id="emetteurVisa" name="emetteurVisa">
+      </section>
+
+      <section aria-labelledby="section-traitement">
+        <div class="section-title">
+          <div class="section-title-left">
+            <img src="assets/logo.png" alt="" class="section-logo" aria-hidden="true">
+            <span id="section-traitement">Traitement</span>
+          </div>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <label for="traitementImmediat">Traitement immédiat</label>
+        <textarea id="traitementImmediat" name="traitementImmediat"></textarea>
+
+        <fieldset class="field-group">
+          <legend>Causes</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="causes" value="Main doeuvre"> Main d’œuvre</label>
+            <label><input type="checkbox" name="causes" value="Milieu"> Milieu</label>
+            <label><input type="checkbox" name="causes" value="Materiel"> Matériel</label>
+            <label><input type="checkbox" name="causes" value="Matiere"> Matière</label>
+            <label><input type="checkbox" name="causes" value="Methode"> Méthode</label>
+            <label><input type="checkbox" name="causes" value="Management Supervision"> Management &amp; Supervision</label>
+          </div>
+        </fieldset>
+
+        <label for="rechercheCauses">Recherche des causes</label>
+        <textarea id="rechercheCauses" name="rechercheCauses"></textarea>
+
+        <div class="inline-grid">
+          <div>
+            <label for="responsableActivite">Responsable de l'activité concernée</label>
+            <input type="text" id="responsableActivite" name="responsableActivite">
+          </div>
+          <div>
+            <label for="responsableDate">Date</label>
+            <input type="date" id="responsableDate" name="responsableDate">
+          </div>
+        </div>
+
+        <label for="responsableVisa">Visa responsable</label>
+        <input type="text" id="responsableVisa" name="responsableVisa">
+      </section>
+
+      <section aria-labelledby="section-actions">
+        <div class="section-title">
+          <div class="section-title-left">
+            <img src="assets/logo.png" alt="" class="section-logo" aria-hidden="true">
+            <span id="section-actions">Actions et validation</span>
+          </div>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <label for="actionsCorrectives">Actions correctives</label>
+        <textarea id="actionsCorrectives" name="actionsCorrectives"></textarea>
+
+        <div class="inline-grid-3">
+          <div>
+            <label for="responsableTraitementCorrective">Responsable de traitement (corrective)</label>
+            <input type="text" id="responsableTraitementCorrective" name="responsableTraitementCorrective">
+          </div>
+          <div>
+            <label for="delaiClotureCorrective">Délai de clôture (corrective)</label>
+            <input type="text" id="delaiClotureCorrective" name="delaiClotureCorrective">
+          </div>
+          <div>
+            <label for="suiviEfficaciteCorrective">Suivi d’efficacité (corrective)</label>
+            <input type="text" id="suiviEfficaciteCorrective" name="suiviEfficaciteCorrective">
+          </div>
+        </div>
+
+        <label for="actionsPreventives">Actions préventives</label>
+        <textarea id="actionsPreventives" name="actionsPreventives"></textarea>
+
+        <div class="inline-grid-3">
+          <div>
+            <label for="responsableTraitementPreventive">Responsable de traitement (préventive)</label>
+            <input type="text" id="responsableTraitementPreventive" name="responsableTraitementPreventive">
+          </div>
+          <div>
+            <label for="delaiCloturePreventive">Délai de clôture (préventive)</label>
+            <input type="text" id="delaiCloturePreventive" name="delaiCloturePreventive">
+          </div>
+          <div>
+            <label for="suiviEfficacitePreventive">Suivi d’efficacité (préventive)</label>
+            <input type="text" id="suiviEfficacitePreventive" name="suiviEfficacitePreventive">
+          </div>
+        </div>
+
+        <fieldset class="field-group">
+          <legend>Évaluation des risques</legend>
+          <div class="inline-choice">
+            <label><input type="radio" name="evaluationRisques" value="acceptable-surveillance" checked> Acceptable Avec Surveillance</label>
+            <label><input type="radio" name="evaluationRisques" value="reduire-alarp"> Réduire ALARP</label>
+            <label><input type="radio" name="evaluationRisques" value="inacceptable"> Inacceptable</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend>Méthode à suivre</legend>
+          <div class="inline-choice">
+            <label><input type="radio" name="methodeSuivre" value="AMDEC"> AMDEC</label>
+            <label><input type="radio" name="methodeSuivre" value="HAZOP"> HAZOP</label>
+            <label><input type="radio" name="methodeSuivre" value="5M" checked> Méthode des 5M</label>
+            <label><input type="radio" name="methodeSuivre" value="Autre"> Autre</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend>Mise en œuvre de l'action et efficacité</legend>
+          <div class="inline-choice">
+            <label><input type="radio" name="miseEnOeuvre" value="acceptable" checked> Acceptable</label>
+            <label><input type="radio" name="miseEnOeuvre" value="acceptable-commentaire"> Acceptable (Avec Commentaire &amp; Correction)</label>
+            <label><input type="radio" name="miseEnOeuvre" value="rejete"> Non Acceptable (Rejeté)</label>
+          </div>
+        </fieldset>
+
+        <div class="inline-grid">
+          <div>
+            <label for="verificateurNom">Nom du vérificateur</label>
+            <input type="text" id="verificateurNom" name="verificateurNom">
+          </div>
+          <div>
+            <label for="verificateurDate">Date</label>
+            <input type="date" id="verificateurDate" name="verificateurDate">
+          </div>
+        </div>
+
+        <label for="verificateurVisa">Visa vérificateur</label>
+        <input type="text" id="verificateurVisa" name="verificateurVisa">
+
+        <label for="coutNC">Coût estimé de la non-conformité</label>
+        <textarea id="coutNC" name="coutNC"></textarea>
+      </section>
+
+      <div class="actions-row">
+        <button type="button" onclick="window.location.href='dashboard.html'">
+          Retour tableau de bord
+        </button>
+        <button type="submit">Générer la fiche</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/form.js"></script>
+</body>
+</html>

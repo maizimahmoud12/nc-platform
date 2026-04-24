@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche de Traitement des Non-Conformités</title>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  padding:20px;
+  background:#eef3f8;
+  display:flex;
+  justify-content:center;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  background:white;
+  padding:24px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:14px;
+  table-layout:fixed;
+}
+
+td,th{
+  border:1px solid #444;
+  padding:8px;
+  vertical-align:top;
+  font-size:14px;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+
+.section{
+  background:#f0f0f0;
+  font-weight:bold;
+}
+
+.text-block{
+  min-height:40px;
+  white-space:pre-wrap;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  line-height:1.5;
+}
+
+.checkbox-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 18px;
+}
+
+.checkbox{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:13px;
+}
+
+.box{
+  width:14px;
+  height:14px;
+  border:1px solid #000;
+  display:inline-block;
+  text-align:center;
+  font-size:12px;
+  line-height:14px;
+  flex:0 0 14px;
+}
+
+.activity-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px 10px;
+}
+
+.sign-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:12px;
+}
+
+.buttons{
+  text-align:center;
+  margin-top:20px;
+}
+
+button{
+  padding:10px 18px;
+  margin:5px;
+  border:none;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn-home{background:#2b1ea5;color:white}
+.btn-new{background:#FFD100;color:#003366}
+.btn-print{background:#444;color:white}
+
+/* first page header only */
+.first-page-header{
+  width:100%;
+  border:2px solid #222;
+  border-collapse:collapse;
+  margin-bottom:14px;
+  table-layout:fixed;
+}
+
+.first-page-header td{
+  border:2px solid #222;
+  padding:0;
+  vertical-align:middle;
+}
+
+.logo-cell{
+  width:115px;
+  background:#fff;
+  text-align:center;
+}
+
+.logo-cell img{
+  width:88px;
+  height:auto;
+  display:block;
+  margin:8px auto;
+}
+
+.title-cell{
+  background:#f3f3f3;
+}
+
+.title-text{
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  line-height:1.15;
+  padding:8px 10px 10px;
+}
+
+.code-row{
+  display:grid;
+  grid-template-columns:1fr 120px;
+  border-top:2px solid #222;
+}
+
+.code-box{
+  background:#058b00;
+  color:#fff;
+  font-weight:700;
+  font-size:22px;
+  text-align:center;
+  padding:6px 10px;
+  border-right:2px solid #222;
+}
+
+.page-box{
+  background:#fff;
+  color:#058b00;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 8px;
+}
+
+.sign-yellow{
+  background:#FFF200;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
+  border-top:1px solid #444;
+}
+
+.sign-yellow div{
+  white-space:nowrap;
+}
+
+.top-info-table td{
+  border:2px solid #333;
+  font-weight:bold;
+}
+
+.top-info-table span{
+  font-weight:normal;
+}
+
+/* page badge */
+.page-number{
+  position:fixed;
+  bottom:10px;
+  right:18px;
+  font-size:12px;
+  color:#555;
+  background:rgba(255,255,255,0.9);
+  padding:2px 8px;
+  border-radius:12px;
+  border:1px solid #ccc;
+}
+
+@page{
+  size:A4;
+  margin:12mm;
+}
+
+@media print{
+  body{
+    background:white;
+    padding:0;
+    margin:0;
+    display:block;
+  }
+
+  .container{
+    width:100%;
+    max-width:none;
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+    margin:0;
+  }
+
+  .buttons{
+    display:none;
+  }
+
+  .page-number{
+    position:fixed;
+    bottom:6mm;
+    right:6mm;
+  }
+}
+
+/* footer */
+.fiche-footer{
+  border-top:3px solid #058b00;
+  padding:8px 12px 6px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  margin-top:20px;
+}
+
+.fiche-footer-text{
+  font-size:11px;
+  line-height:1.35;
+  color:#000;
+  flex:1;
+}
+
+.fiche-footer-text div:first-child{
+  color:#058b00;
+  font-weight:700;
+}
+
+.fiche-footer-text div:last-child{
+  color:#058b00;
+  font-weight:700;
+}
+
+.fiche-footer-logo img{
+  width:42px;
+  height:auto;
+  display:block;
+}
+
+/* risks */
+.risk-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+
+.color{
+  width:14px;
+  height:14px;
+  display:inline-block;
+  border:1px solid #333;
+}
+
+.green{ background:#00a651; }
+.yellow{ background:#FFF200; }
+.red{ background:#ff0000; }
+
+.small-text{
+  font-size:12px;
+}
+
+.box.checked::after{
+  content:"X";
+}
+
+/* actions table */
+.actions-table td{
+  border:1px solid #444;
+  vertical-align:top;
+}
+
+.actions-header td{
+  background:#e6e9df;
+  font-weight:bold;
+  text-align:center;
+}
+
+.vertical-cell{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  text-align:center;
+  font-weight:bold;
+  background:#f3f3f3;
+  font-size:16px;
+  letter-spacing:0.3px;
+}
+
+.lined-text{
+  min-height:140px;
+  white-space:pre-wrap;
+  line-height:1.6;
+  background-image:linear-gradient(to bottom, transparent 95%, #000 95%);
+  background-size:100% 22px;
+  padding:4px 6px;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+.actions-table td{
+  border:1px solid #444;
+  vertical-align:top;
+}
+
+.actions-header td{
+  background:#e6e9df;
+  font-weight:bold;
+  text-align:center;
+}
+
+.vertical-cell{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  text-align:center;
+  font-weight:bold;
+  background:#f3f3f3;
+  font-size:16px;
+  letter-spacing:0.3px;
+}
+
+.lined-text{
+  min-height:140px;
+  white-space:pre-wrap;
+  line-height:1.6;
+  background-image:linear-gradient(to bottom, transparent 95%, #000 95%);
+  background-size:100% 22px;
+  padding:4px 6px;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+@media print {
+  .sign-yellow {
+    background: #FFF200 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <table class="first-page-header">
+    <tr>
+      <td class="logo-cell">
+        <img src="assets/logo.png" alt="Logo">
+      </td>
+      <td class="title-cell">
+        <div class="title-text">
+          FICHE DE TRAITEMENT DES NON-<br>
+          CONFORMITES (FNC)
+        </div>
+        <div class="code-row">
+          <div class="code-box">ENR-SMQ- TNC – 01- 00</div>
+          <div class="page-box">Page 1</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table class="top-info-table">
+    <tr>
+      <td>Lieu d'émission : <span id="f_lieuEmission"></span></td>
+      <td>N° FCN : <span id="f_numero"></span></td>
+      <td>Date : <span id="f_date"></span></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr><td class="section">ORIGINE DE LA NC :</td></tr>
+    <tr><td><div id="origineBox" class="checkbox-line"></div></td></tr>
+  </table>
+
+  <table>
+    <tr><td class="section">1) NATURE DE L'ECART :</td></tr>
+    <tr>
+      <td>
+        <div id="natureBox" class="checkbox-line"></div>
+        <div style="margin-top:8px;">Autre : <span id="autreNature"></span></div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr><td class="section">2) DESCRIPTION :</td></tr>
+    <tr><td id="descriptionEvenement" class="text-block"></td></tr>
+  </table>
+
+  <table>
+    <tr><td class="section">3) ACTIVITE :</td></tr>
+    <tr><td><div id="activitesBox" class="activity-grid"></div></td></tr>
+    <tr>
+      <td style="padding:0;">
+        <div class="sign-yellow">
+          <div><b>Nom de l’émetteur :</b> <span id="emetteurNom"></span></div>
+          <div><b>Visa :</b> <span id="emetteurVisa"></span></div>
+          <div><b>Date :</b> <span id="emetteurDate"></span></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr><td class="section">4) TRAITEMENT : (Responsable de l’activité concerné)</td></tr>
+    <tr><td id="traitementImmediat" class="text-block"></td></tr>
+  </table>
+
+  <table>
+    <tr><td class="section">5) CAUSES :(Responsable de l’activité concerné, HSE, Pilote, …)</td></tr>
+    <tr>
+      <td>
+        <div id="causesBox" class="checkbox-line"></div>
+        <div id="rechercheCauses" class="text-block"></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:0;">
+        <div class="sign-yellow">
+          <div>
+            <b>Responsable de l’activité concernée :</b>
+            <span id="responsableActivite"></span>
+          </div>
+          <div>
+            <b>Visa :</b>
+            <span id="responsableVisa"></span>
+          </div>
+          <div>
+            <b>Date :</b>
+            <span id="responsableDate"></span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+  <tr>
+    <td class="section">6) ACTIONS CORRECTIVES / PREVENTIVES : (Désignation de l’action, pilote,…)</td>
+  </tr>
+</table>
+
+<table class="actions-table">
+  <tr class="actions-header">
+    <td style="width:60px;"></td>
+    <td>ACTIONS</td>
+    <td style="width:160px;">Responsable de Traitement</td>
+    <td style="width:120px;">Délai de Clôture</td>
+    <td style="width:120px;">Suivi d’efficacité</td>
+  </tr>
+
+  <tr>
+    <td class="vertical-cell">Actions Correctives</td>
+    <td><div id="actionsCorrectives" class="lined-text"></div></td>
+    <td id="respTraitCorr"></td>
+    <td id="delaiCorr"></td>
+    <td id="suiviCorr"></td>
+  </tr>
+
+  <tr>
+    <td class="vertical-cell">Actions Préventives</td>
+    <td><div id="actionsPreventives" class="lined-text"></div></td>
+    <td id="respTraitPrev"></td>
+    <td id="delaiPrev"></td>
+    <td id="suiviPrev"></td>
+  </tr>
+</table>
+  <table>
+    <tr>
+      <td class="section">6.1 EVALUATION DES RISQUES :</td>
+    </tr>
+
+   <tr>
+  <td>
+    <div class="risk-line">
+      <span id="risk1" class="box"></span>
+      <span class="color green"></span>
+      Acceptable Avec Surveillance
+
+      <span id="risk2" class="box"></span>
+      <span class="color yellow"></span>
+      Réduire ALARP(1)
+
+      <span id="risk3" class="box"></span>
+      <span class="color red"></span>
+      Inacceptable
+    </div>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <div class="risk-line">
+      <strong>Méthode à Suivre :</strong>
+      <span id="methodAmdec" class="box"></span> AMDEC
+      <span id="methodHazop" class="box"></span> HAZOP
+      <span id="method5m" class="box"></span> Méthode des 5M
+      <span id="methodAutre" class="box"></span> Autre
+    </div>
+  </td>
+</tr>
+    <tr>
+      <td class="small-text">
+        <strong>ALARP (1)</strong> : Le plus bas qu’il soit raisonnablement possible d’atteindre dans la pratique
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr><td class="section">6.2. MISE EN ŒUVRE DE L’ACTION ET EFFICACITE : (Après Contrôle et Vérification)</td></tr>
+    <tr><td><div id="miseBox" class="checkbox-line"></div></td></tr>
+    <tr>
+      <td style="padding:0;">
+        <div class="sign-yellow">
+          <div>
+            <b>Nom de Vérificateur :</b>
+            <span id="verificateurNom"></span>
+          </div>
+          <div>
+            <b>Visa :</b>
+            <span id="verificateurVisa"></span>
+          </div>
+          <div>
+            <b>Date :</b>
+            <span id="verificateurDate"></span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td class="section">
+        7) COUT DE LA NON-CONFORMITE ESTIME : Au minimum indiquer : (les Pertes relative à la Non-Conformité).
+        (en nombre, les moyens nécessaires ou épargnés et les durées)
+      </td>
+    </tr>
+    <tr><td id="coutNC" class="text-block"></td></tr>
+  </table>
+
+  <div class="fiche-footer">
+    <div class="fiche-footer-text">
+      <div><strong>ENR-SMQ-TNC-01-00 FICHE DE TRAITEMENT DES NON-CONFORMITES</strong></div>
+      <div>
+        Propriété exclusive de la Sarl AL-HADIDI, Toute reproduction intégrale ou partielle ainsi que son utilisation par,
+        ou la communication à, des tiers, sans accord préalable écrit de l’auteur est illicite.
+      </div>
+      <div><strong>Le RMQ est responsable de la gestion et l’application de cette procédure.</strong></div>
+    </div>
+
+    <div class="fiche-footer-logo">
+      <img src="assets/logo.png" alt="Logo">
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="btn-home" onclick="location.href='dashboard.html'">Dashboard</button>
+    <button class="btn-new" onclick="location.href='index.html'">New</button>
+    <button class="btn-print" onclick="window.print()">Print</button>
+  </div>
+
+</div>
+
+<div class="page-number">Page</div>
+
+<script src="js/fiche.js"></script>
+
+</body>
+</html>
