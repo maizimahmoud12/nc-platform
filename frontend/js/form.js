@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/fnc";
+const API = "/api/fnc";
 
 function getCheckedValues(name) {
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
